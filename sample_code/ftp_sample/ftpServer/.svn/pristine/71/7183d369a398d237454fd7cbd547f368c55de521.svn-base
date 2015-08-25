@@ -1,0 +1,22 @@
+#_*_coding:utf-8_*_
+__author__ = 'Administrator'
+import re
+count=0
+exit_tag=False
+f=file('staff','r')
+while not exit_tag:
+    choice=raw_input('input you want to search: ').strip()
+    for i in f:
+        if choice in i:
+            choice_index=i.index(choice)
+            choice_len=len(choice)
+            '''
+            part1=0:choice_index
+            part2=choice_index:choice_index+choice_len
+            part3=choice_index+choice_len:len(i)
+            '''##把字符串分成三个部分，第二部分高量显示，我是不是很牛逼？
+            print '------->%s\033[1;32m%s\033[0m%s' %(i[0:choice_index],i[choice_index:choice_index+choice_len],i[choice_index+choice_len:len(i)])
+            count+=1
+            continue
+    exit_tag=True
+print 'the count of what you want to search is\033[1;31;46m    %s   \033[0m' %count

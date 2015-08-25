@@ -1,0 +1,110 @@
+import os
+import sys
+menu_list = {1:['Beef',200000],2:['Mutton',300],3:['Chicken',500],4:'exit'}
+name_list = {'lhf':[123,30000],'alex':[456,30000]}
+select_list=[]
+count=0
+exit_tag=False
+continue_tag=False
+filename="login_up.lock"
+if os.path.exists(filename):
+               print '''
+                           ################################
+                           \033[31;5m Lock file exits,exit\033[0m
+                           ################################
+                     '''
+               sys.exit(1)
+
+while True:
+      name = raw_input('Please input your name: ').strip()
+      if len(name) == 0:
+          print '''
+                           ################################
+                           you must input something
+                           ################################
+                '''
+          continue_tag=True
+      elif name.isdigit():
+          print '''
+                           ################################
+                           you must enter a string
+                           ################################
+                '''
+          continue_tag=True
+      else:
+          if name in name_list:
+               password = raw_input('Please input your password: ').strip()
+               real_pass=str(name_list[name][0])
+               if password == real_pass:
+                  print '''
+                           ################################
+                           login successful
+                           ################################
+                        '''
+                 # os.system('sleep 1;clear')        #for linux
+                  while True:
+                        for i in menu_list:
+                                print "\t",i,menu_list[i]
+                        choice=raw_input("please input your choice: ").strip()
+                        if len(choice) == 0:continue
+                        elif choice.isdigit():
+                             choice=int(choice)
+                             if choice in menu_list:     #########if choice is in menu_list then go on
+                                    if choice == 4:    ######## 4:exit
+                                       exit_tag=True
+                                       break
+                                    salary=name_list[name][1]
+                                    cost=menu_list[choice][1]
+                                    if cost < salary:   #########select is ok
+                                       salary-=cost
+                                       select_list.append(menu_list[choice][0])
+                                       print "%s has joined the shopping cart " %menu_list[choice][0]
+                                    else:
+                                         print '''
+                                                   \033[31;3m
+                                              -----------------------------------
+                                                   your money is not enough
+                                              -----------------------------------
+                                                   \033[0m'''
+                                         exit_tag=True
+                                         break
+                             else:continue
+                        else:continue
+               else:
+                  count+=1
+                  print '''
+                           ################################
+                           \033[31;2mlogin error,please try again
+                           the limit is 3,your try is %s\033[0m
+                           ################################
+                        ''' %count
+                  continue_tag=True
+          else:
+               print '''
+                           ################################
+                           your name is not exists
+                           ################################
+                     '''
+               continue_tag=True
+
+      if count > 2:
+               print '''
+                           ################################
+                           \033[31;1m Try too many times,forced to quit\033[0m
+                           ################################
+                     '''
+               open('login_up.lock','w')
+               break
+      if exit_tag:
+               print '''
+                           ####################################################
+                           \033[31;1m your select is :
+
+                            %s\033[0m
+
+                           ####################################################
+                     ''' %select_list
+               break
+      if continue_tag:continue
+
+

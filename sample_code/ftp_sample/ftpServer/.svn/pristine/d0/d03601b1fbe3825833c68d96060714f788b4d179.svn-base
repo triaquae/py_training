@@ -1,0 +1,16 @@
+#-*-coding:utf-8-*-
+__author__ = 'wuyongqi'
+a=False
+cishu=0
+b=file('C:\Users\wuyon\Desktop\wenjian.txt','r')#在这里选择一个查询文件的位置！！
+while not a:
+    c=raw_input("请输入要查询的信息！")
+    for i in b:
+        if c in i:
+            d=i.index(c)
+            e=len(c)
+            print "%s\033[1;31m%s\033[0m%s" %(i[0:d],i[d:d+e],i[d+e:len(i)])
+            cishu+=1
+            continue
+    a=True
+print "您查询的值有\033[1;30;45m %s \033[0m个" %cishu
