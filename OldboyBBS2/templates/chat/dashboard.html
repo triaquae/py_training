@@ -1,0 +1,707 @@
+{% extends 'index.html' %}
+
+
+{% block head-css %}
+	<link href="/static/plugins/bootstrap-fileinput/css/fileinput.min.css" rel="stylesheet">
+
+<style type="text/css">
+
+/*  bhoechie tab */
+div.bhoechie-tab-container{
+  z-index: 10;
+  background-color: #ffffff;
+  padding: 0 !important;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  border:1px solid #ddd;
+  margin-top: 20px;
+  margin-left: 0px;
+  -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+  box-shadow: 0 6px 12px rgba(0,0,0,.175);
+  -moz-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+  background-clip: padding-box;
+  opacity: 0.97;
+  filter: alpha(opacity=97);
+}
+div.bhoechie-tab-menu{
+  padding-right: 0;
+  padding-left: 0;
+  padding-bottom: 0;
+}
+div.bhoechie-tab-menu div.list-group{
+  margin-bottom: 0;
+}
+div.bhoechie-tab-menu div.list-group>a{
+  margin-bottom: 0;
+}
+div.bhoechie-tab-menu div.list-group>a .glyphicon,
+div.bhoechie-tab-menu div.list-group>a .fa {
+  color: #5A55A3;
+}
+div.bhoechie-tab-menu div.list-group>a:first-child{
+  border-top-right-radius: 0;
+  -moz-border-top-right-radius: 0;
+}
+div.bhoechie-tab-menu div.list-group>a:last-child{
+  border-bottom-right-radius: 0;
+  -moz-border-bottom-right-radius: 0;
+}
+div.bhoechie-tab-menu div.list-group>a.active,
+div.bhoechie-tab-menu div.list-group>a.active .glyphicon,
+div.bhoechie-tab-menu div.list-group>a.active .fa{
+  background-color: #5A55A3;
+  background-image: #5A55A3;
+  color: #ffffff;
+}
+div.bhoechie-tab-menu div.list-group>a.active:after{
+  content: '';
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  margin-top: -13px;
+  border-left: 0;
+  border-bottom: 13px solid transparent;
+  border-top: 13px solid transparent;
+  border-left: 10px solid #5A55A3;
+}
+
+div.bhoechie-tab-content{
+  background-color: #ffffff;
+  /* border: 1px solid #eeeeee; */
+  padding-left: 20px;
+  padding-top: 10px;
+}
+
+div.bhoechie-tab div.bhoechie-tab-content:not(.active){
+  display: none;
+}
+
+
+</style>
+
+{% endblock %}
+
+{% block page-container %}
+
+<div class="page-container">
+    <div class="row">
+
+        <div class="left_sidebar col-lg-3">
+
+        <!--tab -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-8 col-xs-9 bhoechie-tab-container">
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bhoechie-tab-menu">
+                          <div class="list-group">
+                             <a href="#" class="list-group-item active text-center">
+                              <h4 ><i class="fa fa-commenting-o fa-2"></i></h4><br/>最近
+                            </a>
+                            <a href="#" class="list-group-item  text-center">
+                              <h4 >
+                                  <i class="fa fa-user fa-2"></i>
+                                  <span contact_type="single_contact">  <i class="fa fa-commenting fa-2 myClass hide" style="color: darkorange"></i></span>
+                              </h4><br/>联系人
+                            </a>
+                            <a href="#" class="list-group-item text-center">
+                              <h4 >
+                                  <i class="fa fa-user fa-2"></i>
+                                  <span contact_type="group">  <i class="fa fa-commenting fa-2 myClass hide" style="color: darkorange"></i></span>
+                              </h4><br/>群组
+                            </a>
+                            <a href="#" class="list-group-item text-center">
+                                <h4 ><i class="fa fa-cog fa-2"></i></h4><br/>配置
+                            </a>
+                            <a href="#" class="list-group-item text-center">
+                              <h4 ><i class="fa fa-plus fa-2"></i></h4><br/>添加
+                            </a>
+
+                          </div>
+                        </div>
+                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bhoechie-tab">
+                            <!-- flight section -->
+                            <div class="bhoechie-tab-content active">
+                                <center>
+                                  <img src="/static/imgs/school_logo.png" width="90%" >
+
+                                  <hr/>
+                                  <h4>老男孩Python开发之<pre>WebQQ项目课件</pre></h4>
+
+                                </center>
+                            </div>
+                            <!-- contacts section -->
+                            <div id="contacts" class="bhoechie-tab-content ">
+
+                               <input type="text" class="form-control" placeholder="Search for...">
+
+                               <ul id="contact-list" class="list-unstyled">
+
+
+                               </ul>
+                            </div>
+                            <!-- groups section -->
+                            <div id="contacts_groups" class="bhoechie-tab-content ">
+
+                               <input type="text" class="form-control" placeholder="Search for...">
+
+                               <ul id="group-list" class="list-unstyled">
+
+
+                               </ul>
+                            </div>
+
+
+                        </div>
+                    </div>
+              </div>
+            </div>
+            <!--end tab-->
+
+
+        </div> <!--end left_sidebar-->
+
+        <div class="content col-lg-9">
+
+
+            <div class="col-lg-10 col-md-10 bhoechie-tab-container dialog">
+
+                <div id="dialog-header-msg" class="dialog-header">
+
+                    <span chat_id='100' dialog_type="group" >gg</span>
+                </div>
+
+
+                <div id="dialog-content-box" class="dialog-content">
+
+                    <div class="timeline-stat">
+                        <div class="timeline-icon"><i class="fa fa-user fa-lg"></i></div>
+                    </div>
+                    <div style="max-width: 80%">
+
+                    <p><span class="msg-text-head">金角大王</span><span class="msg-text-head"></span>17:54:32 </p>
+                    <p><pre class="msg-text">弟弟，跟哥哥去巡山呀，孩儿们来报说由东土大唐来的和尚正经过咱们的地盘，哥哥可是听说如果吃了这唐僧肉就可以长生不老呀！</pre></p>
+                    </div>
+
+
+
+
+
+                    <div  class="timeline-stat pull-right">
+                        <div class="timeline-icon"><i class="fa fa-user fa-lg"></i></div>
+                    </div>
+                    <div align="right" class="msg_box_right">
+
+                        <p><span class="msg-text-head"> 银角大王</span><span class="msg-text-head">  17:55:12</span> </p>
+                        <p><pre class="msg-text-right">哥哥，弟弟也听说过此事，不过听说这和尚身边有个徒弟会Python呀，我们怕是打不过他们呀！</pre></p>
+                    </div>
+
+
+                    <div class="timeline-stat">
+                        <div class="timeline-icon"><i class="fa fa-user fa-lg"></i></div>
+                    </div>
+                    <div style="max-width: 80%">
+
+                    <p><span class="msg-text-head">无名小妖</span><span class="msg-text-head">17:55:40</span> </p>
+                    <p><pre class="msg-text">二位大王不用担心，会Python有蛋用，我还会Shell编程呢！</pre></p>
+                    </div>
+
+
+                    <div  class="timeline-stat pull-right">
+                        <div class="timeline-icon"><i class="fa fa-user fa-lg"></i></div>
+                    </div>
+                    <div align="right" class="msg_box_right">
+
+                        <p><span class="msg-text-head">银角大王 </span><span class="msg-text-head"> 17:58:20</span> </p>
+                        <p><pre class="msg-text-right">对，咱们有紫金红葫芦和羊脂玉净瓶呢，不怕干不过那小子！</pre></p>
+                    </div>
+
+
+                </div>
+                <div class="dialog-send-box">
+                   <div class="msg-send-bar">
+                       <span><i class="fa fa-font fa-2"></i></span>
+                       <span><i class="fa fa-picture-o fa-2"></i></span>
+                       <span><i class="fa fa-smile-o fa-2"></i></span>
+                       <span><i class="fa fa-clock-o fa-2"></i></span>
+                   </div>
+                   <textarea id="msg_input" name="msg" class="" placeholder="输入消息..."></textarea>
+                    <div id="file-upload-container hide ">
+                    <input id="file_upload"  name="filename" type="file" multiple class="file-loading">
+                    </div>
+                 </div>
+
+                </div> <!--end row-->
+
+            </div>
+
+
+
+
+
+
+
+
+
+        </div> <!--end content-->
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+{% endblock %}
+
+{% block bottom-js %}
+	<script src="/static/plugins/bootstrap-fileinput/js/fileinput.js"></script>
+	<script src="/static/plugins/bootstrap-fileinput/js/plugins/canvas-to-blob.js"></script>
+	<script src="/static/plugins/bootstrap-fileinput/js/fileinput_locale_zh.js"></script>
+
+<script type="text/javascript">
+    chat_session_dic = {
+        'single_contact':{},
+        'group':{},
+    }; //save all the dialogs
+    function ChatSession(action,chat_id,dialog_type,mem_data){
+           mem_data = typeof mem_data !== 'undefined' ? mem_data : 0;
+
+
+        if (action == 'dump'){
+                var session_content = $('#dialog-content-box').html();
+                chat_session_dic[dialog_type][chat_id] = session_content ;
+        }else if (action == 'load'){
+               if (chat_session_dic[dialog_type].hasOwnProperty(chat_id) ){
+                 var html_ele =  chat_session_dic[dialog_type][chat_id];
+               }else{
+                 var html_ele = '';
+               }
+               return html_ele;
+        }else if (action == 'dump_mem'){
+               chat_session_dic[dialog_type][chat_id] = mem_data ;
+               console.log('---save data in mem as the dialog not open ed yet..--');
+               console.log(chat_session_dic);
+
+        }
+    }
+
+    function InitilizeContactMsgs(){
+        $.getJSON('{% url "getContactsMsgs" %}',{
+            'user_id':"{{ request.user.userprofile.id }}",
+            'action':'update_info',
+            'init' : 1,
+        },function(callback){
+            UpdateContacts(callback);
+            UpdateGroups(callback);
+            UpdateContactMsgs();
+            console.log('----main keep going,no blocking----');
+        });
+
+        $("div.bhoechie-tab-menu>div.list-group>a").click(function(e) {
+            e.preventDefault();
+            $(this).siblings('a.active').removeClass("active");
+            $(this).addClass("active");
+            var index = $(this).index();
+            $("div.bhoechie-tab>div.bhoechie-tab-content").removeClass("active");
+            $("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
+        });
+
+    } //end UpdateContactMsgs
+
+
+    function UpdateContactMsgs(){
+        $.getJSON('{% url "getContactsMsgs" %}',{
+            'user_id':"{{ request.user.userprofile.id }}",
+            'action':'update_info'
+        },function(callback){
+             var current_chat_id = $("#dialog-header-msg span").attr("chat_id");
+             var current_dialog_type = $("#dialog-header-msg span").attr("dialog_type");
+
+             UpdateChatBox(current_chat_id,callback.msg_list,current_dialog_type);
+
+             console.log( '--update_success- ' + new Date());
+             return UpdateContactMsgs();
+            //recursive run
+        });
+
+    }
+    $(document).ready(function(){
+
+
+        InitilizeContactMsgs();//get contact list and msgs when page loaded
+
+        /*var GetMsgInterval = setInterval(function(){
+            console.log("----run interval----");
+            var res = UpdateContactMsgs();
+
+            if (res == 'update_success'){
+
+                console.log('--sucess----');
+
+            }
+        },5000);
+        */
+
+        //send msg
+        $("body").delegate("textarea", "keydown",function(e){
+
+            if(e.which == 13) {//Enter key down
+                //send msg button clicked
+                var msg_text = $("textarea").val();
+                if ($.trim(msg_text).length > 0){
+
+                    //console.log(msg_text);
+
+                    SendMsg(msg_text);
+                }
+                //no wait the send_msg's call confirm msg
+
+                AddSentMsgIntoBox(msg_text);
+
+                $("textarea").val('');
+
+
+            }
+        });
+
+
+        $("#file_upload").fileinput({
+            uploadUrl: "/api/multitask/file_upload/", // server upload action
+            uploadAsync: true,
+            language:'zh',
+            maxFileSize:2000,
+            maxFileCount: 5,
+            layoutTemplates:{
+                main1: '{preview}\n' +
+                    '<div class="kv-upload-progress hide"></div>\n' +
+                    '<div class="input-group {class}">\n' +
+                    '   {caption}\n' +
+                    '   <div class="input-group-btn">\n' +
+                    '       {remove}\n' +
+                    '       {cancel}\n' +
+                    '       {upload}\n' +
+                    '       {browse}\n' +
+                    '   </div>\n' +
+                    '</div>',
+                main2: '{preview}\n<div class="kv-upload-progress hide"></div>\n{remove}\n{cancel}\n{upload}\n{browse}\n',
+                preview: '<div class="file-preview {class}">\n' +
+                    '    {close}\n' +
+                    '    <div class="close fileinput-remove">×</div>\n' +
+                    '    <div  class="">\n' +
+                    '    <div class="file-preview-thumbnails">\n' +
+                    '    </div>\n' +
+                    '    <div class="clearfix"></div>' +
+                    '    <div class="file-preview-status text-center text-success"></div>\n' +
+                    '    <div class="kv-fileinput-error"></div>\n' +
+                    '    </div>\n' +
+                    '</div>',
+                icon: '<span class="glyphicon glyphicon-file kv-caption-icon"></span>',
+                caption: '<div tabindex="-1" class="form-control file-caption {class}">\n' +
+                    '   <div class="file-caption-name"></div>\n' +
+                    '</div>',
+                btnDefault: '<button type="{type}" tabindex="500" title="{title}" class="{css}"{status}>{icon}{label}</button>',
+                btnLink: '<a href="{href}" tabindex="500" title="{title}" class="{css}"{status}>{icon}{label}</a>',
+                btnBrowse: '<div tabindex="500" class="{css}"{status}>{icon}{label}</div>',
+                modal: '<div id="{id}" class="modal fade">\n' +
+                    '  <div class="modal-dialog modal-lg">\n' +
+                    '    <div class="modal-content">\n' +
+                    '      <div class="modal-header">\n' +
+                    '        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>\n' +
+                    '        <h3 class="modal-title">Detailed Preview <small>{title}</small></h3>\n' +
+                    '      </div>\n' +
+                    '      <div class="modal-body">\n' +
+                    '        <textarea class="form-control" style="font-family:Monaco,Consolas,monospace; height: {height}px;" readonly>{body}</textarea>\n' +
+                    '      </div>\n' +
+                    '    </div>\n' +
+                    '  </div>\n' +
+                    '</div>',
+                zoom: '<button type="button" class="btn btn-default btn-sm btn-block" title="{zoomTitle}: {caption}" onclick="{dialog}">\n' +
+                    '   {zoomInd}\n' +
+                    '</button>\n',
+                progress: '<div class="progress">\n' +
+                    '    <div class="progress-bar progress-bar-success progress-bar-striped text-center" role="progressbar" aria-valuenow="{percent}" aria-valuemin="0" aria-valuemax="100" style="width:{percent}%;">\n' +
+                    '        {percent}%\n' +
+                    '     </div>\n' +
+                    '</div>',
+                footer: '<div class="file-thumbnail-footer">\n' +
+                    '    <div class="file-caption-name" style="width:{width}">{caption}</div>\n' +
+                    '    {progress} {actions}\n' +
+                    '</div>',
+                actions: '<div class="file-actions">\n' +
+                    '    <div class="file-footer-buttons">\n' +
+                    '        {upload}{delete}' +
+                    '    </div>\n' +
+                    '    <div class="file-upload-indicator" tabindex="-1" title="{indicatorTitle}">{indicator}</div>\n' +
+                    '    <div class="clearfix"></div>\n' +
+                    '</div>',
+                actionDelete: '<button type="button" class="kv-file-remove {removeClass}" title="{removeTitle}"{dataUrl}{dataKey}>{removeIcon}</button>\n',
+                actionUpload: '<button type="button" class="kv-file-upload {uploadClass}" title="{uploadTitle}">{uploadIcon}</button>\n'
+
+            }
+
+
+
+
+        });
+        $('#file_upload').on('fileuploaded', function(event, data, previewId, index) {
+            var form = data.form, files = data.files, extra = data.extra,
+                response = data.response, reader = data.reader;
+        });
+
+
+
+    $(".fa-font,.fa-picture-o").click(function(){
+        $("#file-upload-container").toggleClass('hide');
+        $("#msg_input").toggleClass('hide');
+    });
+
+
+
+
+    });//end doc ready
+
+    function AddSentMsgIntoBox(msg_text){
+
+        var msg_item = ' <div class="timeline-stat pull-right">' +
+            '<div class="timeline-icon"><i class="fa fa-user fa-lg"></i></div>' +
+        '</div>' +
+         '<div align="right" class="msg_box_right" >' +
+         '<p ><span class="msg-text-head ">'   + new Date().toLocaleTimeString() + " {{ request.user.userprofile.name }} "  + "</span> </p>" +
+           '<pre class="msg-text-right">' + msg_text +'</pre></div>';
+
+
+        $("#dialog-content-box").append(msg_item);
+
+        $('#dialog-content-box').animate({
+            scrollTop: $('#dialog-content-box')[0].scrollHeight}, 500);
+
+    }
+    function SendMsg(msg){
+        var msg_dic = {
+            'contact_type':  $("#dialog-header-msg span").attr("dialog_type"), // 'group'
+            //'contact_id' : 1,
+            'from':{'id':"{{ request.user.userprofile.id }}",'name':"{{ request.user.userprofile.name }}"},
+            'to':  $("#dialog-header-msg span").attr("chat_id"),
+            'msg': msg
+        }
+        //console.log('--->msg_dic');
+        //console.log(msg_dic);
+        $.get("{% url 'send_msg' %}", {'data':JSON.stringify(msg_dic)},function(callback){
+
+            console.log('send to [' + msg_dic.to +"] msg[" + msg_dic.msg +  " ] feedback: " + callback  );
+
+
+        });//end getJSON
+
+    }
+
+    function UpdateGroups(callback){
+        var html_ele = '';
+        $.each(callback.contact_dic.groups, function(index,item){
+            html_ele += "<li  contact_id='" + item.id + "'>"  +  item.name + "</span><span class='pull-right badge hide' style='background-color:red;'>0</span></li>";
+
+        });//end each
+
+        $("#group-list").html(html_ele);
+
+        //bind click event
+        $("#group-list li").click(function(){
+            $(this).siblings().removeClass("contact-active");
+           $(this).addClass("contact-active");
+           OpenDialogBox(
+                   $(this).attr("contact_id"),
+                   $(this).text(),
+                   callback,
+                   'group',
+                   $(this).attr("status"));
+        });
+
+    }
+    function UpdateContacts(callback){
+
+        var html_ele ='';
+        //below for single contacts
+        $.each(callback.contact_dic.contacts,function(index,item){
+            //console.log(item);
+
+            if (item.online == true){
+                var status = "<i class='fa fa-circle' style='color:greenyellow;margin-right:10px'></i>";
+            }else{
+               var status = "<i class='fa fa-circle' style='color:lightgray;margin-right:10px'></i>";
+
+            }
+            html_ele += "<li status=" + item.online + " contact_id='" + item.id + "'><span>" + status +  item.name + "</span><span class='pull-right badge hide' style='background-color:red;'>0</span></li>";
+        });//end each
+        $("#contact-list").html(html_ele);
+
+        //bind click event
+        $("#contact-list li").click(function(){
+            $(this).siblings().removeClass("contact-active");
+           $(this).addClass("contact-active");
+           OpenDialogBox(
+                   $(this).attr("contact_id"),
+                   $($(this).children()[0]).text(),
+                   callback,
+                   'single_contact',
+                   $(this).attr("status"));
+        });
+    }
+
+
+    function OpenDialogBox(chat_id,contact_name,msg_dic, dialog_type,online_status){
+
+          //save prev session first before open new one
+          var prev_chat_id = $("#dialog-header-msg span").attr('chat_id');
+          var prev_dialog_type = $("#dialog-header-msg span").attr('dialog_type');
+          ChatSession('dump',prev_chat_id,prev_dialog_type)
+          if (chat_id != prev_chat_id || dialog_type != prev_dialog_type) {
+              // not same chat session ,need to clear the chat box
+              $('#dialog-content-box').html(ChatSession('load',chat_id,dialog_type)  );
+
+          }
+          if (dialog_type == 'single_contact'){
+              if (online_status == 'false'){
+                  var status = "<i class='fa fa-circle' style='color:lightgray;margin-right:10px'></i>";
+              }else{
+                    var status = "<i class='fa fa-circle' style='color:greenyellow;margin-right:10px'></i>";
+
+              }
+
+              var header_msg = status + contact_name + "<span chat_id='"+ chat_id  +"' dialog_type='"+ dialog_type +"' class='hide'></span>";
+              $("#dialog-header-msg").html(header_msg);
+
+              //UpdateChatBox(chat_id,msg_dic.msg_list,dialog_type);
+
+          } else if (dialog_type == 'group'){
+              var header_msg = contact_name + "<span chat_id='"+ chat_id  +"' dialog_type='"+ dialog_type +"' class='hide'></span>";
+              $("#dialog-header-msg").html(header_msg);
+
+          }
+
+          UpdateMsgNotificationNum(dialog_type,chat_id,'clear');
+          UpdateChatBox(chat_id,msg_dic.msg_list,dialog_type);
+
+    }
+
+    function UpdateMsgNotificationNum(contact_type,msg_to_id,action){
+
+        var current_open_panel = $("#dialog-header-msg span").attr("dialog_type");
+
+
+        if (contact_type == 'single_contact'){
+            var notification_ele = $($("#contact-list li[contact_id='" +  msg_to_id +   "']").children()[1]);
+
+        }else{
+            var notification_ele = $($("#group-list li[contact_id='" +  msg_to_id +   "']").children()[0]);
+        }
+
+
+
+        if (action =='add'){
+            notification_ele.text(parseInt(notification_ele.text()) + 1);
+            notification_ele.removeClass('hide');
+
+            if (current_open_panel != contact_type ){
+                var panel_notifiction_ele = $("span[contact_type='"+ contact_type +"'] i");
+                console.log('--current open panel--:' + current_open_panel + '  --contact type:' + contact_type);
+                panel_notifiction_ele.removeClass('hide');
+                blink('.myClass',5,500);
+            }
+
+
+
+        }else{ //clear
+            notification_ele.text(0);
+            notification_ele.addClass('hide');
+            var panel_notifiction_ele = $("span[contact_type='"+ contact_type +"'] i");
+            panel_notifiction_ele.addClass('hide');
+
+        }
+
+    }
+
+
+    function UpdateChatBox(chat_id,msg_list,contact_type){
+        var html_ele = '';
+        $.each(msg_list,function(index,item){
+            var msg_belong_to_current_session_flag = false;
+            var msg_to_id ; // use this flag to dertermine which key to save the temp session
+            if (item.contact_type == 'single_contact'){
+                msg_to_id = item.from.id ;
+            }else{
+                msg_to_id = item.to;
+            }
+
+
+            if (item.contact_type  == contact_type && item.from.id == chat_id ) { //single_contact dialog is opened for this user now
+                console.log('--find contact msg---' + chat_id);
+                console.log(item.msg);
+                msg_belong_to_current_session_flag = true;
+
+            }else if (item.contact_type  == contact_type && item.to == chat_id ){ //group
+                msg_belong_to_current_session_flag = true;
+                console.log('--find group msg---' + chat_id);
+                console.log(item.msg);
+
+            }else{
+                console.log('---not equal---');
+                console.log(item.contact_type + '--'+ contact_type + '--'+ item.from.id+ '--'+ chat_id);
+
+            }
+
+            var msg_row = '<div class="timeline-stat">' +
+                    '<div class="timeline-icon"><i class="fa fa-user fa-lg"></i></div>' +
+                    '</div>' +
+                    '<div class="msg_box_left">' +
+                    '<p><span class="msg-text-head">' + item.from.name + '</span>' +
+                    '<span class="msg-text-head">' + item.date + '</span></p>' +
+                    '<pre class="msg-text">' + item.msg + '</pre></div>';
+            if (msg_belong_to_current_session_flag){
+                html_ele += msg_row;
+            }else{ //dialog not opened, save the msg into session dic
+                var old_session_content = ChatSession('load',msg_to_id,item.contact_type);
+                ChatSession('dump_mem',msg_to_id,item.contact_type,old_session_content + msg_row);
+                //update msg num notification
+                UpdateMsgNotificationNum(item.contact_type,msg_to_id,'add');
+
+            }
+
+        });//end each
+        console.log(msg_list);
+
+        //insert into msg box
+        $("#dialog-content-box").append(html_ele);
+
+        $('#dialog-content-box').animate({
+        scrollTop: $('#dialog-content-box')[0].scrollHeight}, 500);
+
+
+    }
+
+    function blink(elem, times, speed) {
+        if (times > 0 || times < 0) {
+            if ($(elem).hasClass("blink"))
+                $(elem).removeClass("blink");
+            else
+                $(elem).addClass("blink");
+        }
+
+        clearTimeout(function () {
+            blink(elem, times, speed);
+        });
+
+        if (times > 0 || times < 0) {
+            setTimeout(function () {
+                blink(elem, times, speed);
+            }, speed);
+            times -= .5;
+        }
+    }//end blink
+
+</script>
+
+{% endblock %}

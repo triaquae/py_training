@@ -1,0 +1,45 @@
+{% extends 'index.html' %}
+{% load custom %}
+
+{% block content-left %}
+
+   <div class="bbs_title">
+    <h3>{{ article.title }}</h3>
+
+    <span>{{ article.author.name }}</span>
+    <span>{{ article.publish_date }}</span>
+    <span>点赞{{ article.thumb_set.select_related.count }}</span>
+    <span>评论{{ article.comment_set.select_related.count }}</span>
+   </div>
+
+  <div class="bbs_content">
+    {{ article.content |safe}}
+
+  </div>
+
+  <div class="bbs_comment_box">
+    <div class="bbs_comment_sub">
+        <textarea cols="100%" rows="5" name="comment">
+
+        </textarea>
+
+    </div>
+    <div class="bbs_comment_list">
+        {#% build_layer_comments comment_tree  %#}
+        {%  build_comment_tree comment_tree %}
+
+
+    </div>
+  </div>
+
+{% endblock %}
+
+
+{% block bottom-js %}
+
+    <script type="text/javascript">
+
+
+    </script>
+
+{% endblock %}

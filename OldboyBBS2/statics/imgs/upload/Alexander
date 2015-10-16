@@ -1,0 +1,217 @@
+
+system for ubuntu14.06 64-bit
+install path /home/google-cloud-my-ubuntu14.04/CrazyEye and # chown -R 775 CrazyEye
+
+###------------------------------------------------------------------- install error revise
+#已经安装完了，碰到二个问题：
+
+1、文档有问题。
+# http://crazyeyedoc.readthedocs.org/en/latest/index.html#screenshots
+apt-get install python-dev  # ------------------- no install for ubuntu14.04
+pip install pycrypto
+
+apt-get install libmysqlclient-dev  # ------------------- no install for ubuntu14.04
+pip install MySQL-python
+
+2.安装Shellinabox
+$ make && makeinstall      # $ make && make install  
+
+pip install ecdsa # ------------------- no install for ubuntu14.04
+
+
+
+2、#用ssh登录到此用户，在输入用户名密码后，如果显示以下提示，则代表配置成功  # ---这里出问题
+press ENTER if you don't have token, [input your token]: #此处敲回车
+# 我输入用户信息，即是创建管理员账号 # 在文本的183代码记录，输入密码后报错，详细看202行代码开始。
+
+###------------------------------------------------------------------- 
+
+
+
+
+# git clone https://github.com/triaquae/CrazyEye.git
+# cd CrazyEye/
+# pip install Django==1.8.4
+# pip install django-suit==0.2.15
+# pip install django-session-security
+
+# apt-get install python-dev
+# pip install pycrypto
+# pip install paramiko
+
+Requirement already satisfied (use --upgrade to upgrade): paramiko in /usr/local/lib/python2.7/dist-packages
+Cleaning up...
+
+# apt-get install libmysqlclient-dev
+# pip install MySQL-python
+
+# -----------------------切换用户google-cloud-my-ubuntu14.04
+google-cloud-my-ubuntu14.04@my-ubuntu:~/CrazyEye$ python manage.py makemigrations
+System check identified some issues:
+
+WARNINGS:
+?: (1_8.W001) The standalone TEMPLATE_* settings were deprecated in Django 1.8 and the TEMPLATES dictionary takes precedence. You must put the values of the following settings into your default TEMPLATES dict: TEMPLATE_CONTEXT_PROCESSORS.
+No changes detected
+google-cloud-my-ubuntu14.04@my-ubuntu:~/CrazyEye$ echo $?
+0
+google-cloud-my-ubuntu14.04@my-ubuntu:~/CrazyEye$ python manage.py migrate
+System check identified some issues:
+
+WARNINGS:
+?: (1_8.W001) The standalone TEMPLATE_* settings were deprecated in Django 1.8 and the TEMPLATES dictionary takes precedence. You must put the values of the following settings into your default TEMPLATES dict: TEMPLATE_CONTEXT_PROCESSORS.
+Operations to perform:
+  Synchronize unmigrated apps: staticfiles, messages, session_security, suit
+  Apply all migrations: admin, web, contenttypes, auth, sessions
+Synchronizing apps without migrations:
+  Creating tables...
+    Running deferred SQL...
+  Installing custom SQL...
+Running migrations:
+  Rendering model states... DONE
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying sessions.0001_initial... OK
+  Applying web.0001_initial... OK
+  Applying web.0002_auto_20150923_1208... OK
+  Applying web.0003_auto_20150923_1404... OK
+  Applying web.0004_auto_20150924_1237... OK
+  Applying web.0005_auditlog_action_type... OK
+  Applying web.0006_auto_20150911_1307... OK
+  Applying web.0007_sessiontrack... OK
+  Applying web.0008_auditlog_sesstion... OK
+  Applying web.0009_auto_20150929_1430... OK
+  Applying web.0010_auto_20150929_1432... OK
+  Applying web.0011_sessiontrack_date... OK
+  Applying web.0012_sessiontrack_closed... OK
+  Applying web.0013_auto_20150930_1501... OK
+  Applying web.0014_remove_hostusers_ssh_key... OK
+  Applying web.0015_auto_20151003_1107... OK
+/usr/local/lib/python2.7/dist-packages/django/db/backends/mysql/base.py:124: Warning: Incorrect string value: '\xE9\x83\xA8\xE9\x97\xA8' for column 'name' at row 4
+  return self.cursor.execute(query, args)
+
+/usr/local/lib/python2.7/dist-packages/django/db/backends/mysql/base.py:124: Warning: Incorrect string value: '\xE9\x83\xA8\xE9\x97\xA8' for column 'name' at row 5
+  return self.cursor.execute(query, args)
+
+/usr/local/lib/python2.7/dist-packages/django/db/backends/mysql/base.py:124: Warning: Incorrect string value: '\xE9\x83\xA8\xE9\x97\xA8' for column 'name' at row 6
+  return self.cursor.execute(query, args)
+
+/usr/local/lib/python2.7/dist-packages/django/db/backends/mysql/base.py:124: Warning: Incorrect string value: '\xE4\xB8\xBB\xE6\x9C\xBA' for column 'name' at row 7
+  return self.cursor.execute(query, args)
+
+/usr/local/lib/python2.7/dist-packages/django/db/backends/mysql/base.py:124: Warning: Incorrect string value: '\xE4\xB8\xBB\xE6\x9C\xBA' for column 'name' at row 8
+  return self.cursor.execute(query, args)
+
+/usr/local/lib/python2.7/dist-packages/django/db/backends/mysql/base.py:124: Warning: Incorrect string value: '\xE4\xB8\xBB\xE6\x9C\xBA' for column 'name' at row 9
+  return self.cursor.execute(query, args)
+
+/usr/local/lib/python2.7/dist-packages/django/db/backends/mysql/base.py:124: Warning: Incorrect string value: '\xE8\xBF\x9C\xE7\xA8\x8B...' for column 'name' at row 10
+  return self.cursor.execute(query, args)
+
+/usr/local/lib/python2.7/dist-packages/django/db/backends/mysql/base.py:124: Warning: Incorrect string value: '\xE8\xBF\x9C\xE7\xA8\x8B...' for column 'name' at row 11
+  return self.cursor.execute(query, args)
+
+/usr/local/lib/python2.7/dist-packages/django/db/backends/mysql/base.py:124: Warning: Incorrect string value: '\xE8\xBF\x9C\xE7\xA8\x8B...' for column 'name' at row 12
+  return self.cursor.execute(query, args)
+
+/usr/local/lib/python2.7/dist-packages/django/db/backends/mysql/base.py:124: Warning: Incorrect string value: '\xE4\xB8\xBB\xE6\x9C\xBA...' for column 'name' at row 13
+  return self.cursor.execute(query, args)
+
+/usr/local/lib/python2.7/dist-packages/django/db/backends/mysql/base.py:124: Warning: Incorrect string value: '\xE4\xB8\xBB\xE6\x9C\xBA...' for column 'name' at row 14
+  return self.cursor.execute(query, args)
+
+/usr/local/lib/python2.7/dist-packages/django/db/backends/mysql/base.py:124: Warning: Incorrect string value: '\xE4\xB8\xBB\xE6\x9C\xBA...' for column 'name' at row 15
+  return self.cursor.execute(query, args)
+
+/usr/local/lib/python2.7/dist-packages/django/db/backends/mysql/base.py:124: Warning: Incorrect string value: '\xE4\xB8\xBB\xE6\x9C\xBA...' for column 'name' at row 16
+  return self.cursor.execute(query, args)
+
+/usr/local/lib/python2.7/dist-packages/django/db/backends/mysql/base.py:124: Warning: Incorrect string value: '\xE4\xB8\xBB\xE6\x9C\xBA...' for column 'name' at row 17
+  return self.cursor.execute(query, args)
+
+/usr/local/lib/python2.7/dist-packages/django/db/backends/mysql/base.py:124: Warning: Incorrect string value: '\xE4\xB8\xBB\xE6\x9C\xBA...' for column 'name' at row 18
+  return self.cursor.execute(query, args)
+
+/usr/local/lib/python2.7/dist-packages/django/db/backends/mysql/base.py:124: Warning: Incorrect string value: '\xE8\xB4\xA6\xE6\x88\xB7' for column 'name' at row 19
+  return self.cursor.execute(query, args)
+
+/usr/local/lib/python2.7/dist-packages/django/db/backends/mysql/base.py:124: Warning: Incorrect string value: '\xE8\xB4\xA6\xE6\x88\xB7' for column 'name' at row 20
+  return self.cursor.execute(query, args)
+
+/usr/local/lib/python2.7/dist-packages/django/db/backends/mysql/base.py:124: Warning: Incorrect string value: '\xE8\xB4\xA6\xE6\x88\xB7' for column 'name' at row 21
+  return self.cursor.execute(query, args)
+
+/usr/local/lib/python2.7/dist-packages/django/db/backends/mysql/base.py:124: Warning: Incorrect string value: '\xE5\xAE\xA1\xE8\xAE\xA1...' for column 'name' at row 25
+  return self.cursor.execute(query, args)
+
+/usr/local/lib/python2.7/dist-packages/django/db/backends/mysql/base.py:124: Warning: Incorrect string value: '\xE5\xAE\xA1\xE8\xAE\xA1...' for column 'name' at row 26
+  return self.cursor.execute(query, args)
+
+/usr/local/lib/python2.7/dist-packages/django/db/backends/mysql/base.py:124: Warning: Incorrect string value: '\xE5\xAE\xA1\xE8\xAE\xA1...' for column 'name' at row 27
+  return self.cursor.execute(query, args)
+
+/usr/local/lib/python2.7/dist-packages/django/db/backends/mysql/base.py:124: Warning: Incorrect string value: '\xE6\x89\xB9\xE9\x87\x8F...' for column 'name' at row 28
+  return self.cursor.execute(query, args)
+
+/usr/local/lib/python2.7/dist-packages/django/db/backends/mysql/base.py:124: Warning: Incorrect string value: '\xE6\x89\xB9\xE9\x87\x8F...' for column 'name' at row 29
+  return self.cursor.execute(query, args)
+
+/usr/local/lib/python2.7/dist-packages/django/db/backends/mysql/base.py:124: Warning: Incorrect string value: '\xE6\x89\xB9\xE9\x87\x8F...' for column 'name' at row 30
+  return self.cursor.execute(query, args)
+
+/usr/local/lib/python2.7/dist-packages/django/db/backends/mysql/base.py:124: Warning: Incorrect string value: '\xE6\x89\xB9\xE9\x87\x8F...' for column 'name' at row 31
+  return self.cursor.execute(query, args)
+
+/usr/local/lib/python2.7/dist-packages/django/db/backends/mysql/base.py:124: Warning: Incorrect string value: '\xE6\x89\xB9\xE9\x87\x8F...' for column 'name' at row 32
+  return self.cursor.execute(query, args)
+
+/usr/local/lib/python2.7/dist-packages/django/db/backends/mysql/base.py:124: Warning: Incorrect string value: '\xE6\x89\xB9\xE9\x87\x8F...' for column 'name' at row 33
+  return self.cursor.execute(query, args)
+
+google-cloud-my-ubuntu14.04@my-ubuntu:~/CrazyEye$ echo $?
+0
+google-cloud-my-ubuntu14.04@my-ubuntu:~/CrazyEye$ python manage.py createsuperuser
+System check identified some issues:
+
+WARNINGS:
+?: (1_8.W001) The standalone TEMPLATE_* settings were deprecated in Django 1.8 and the TEMPLATES dictionary takes precedence. You must put the values of the following settings into your default TEMPLATES dict: TEMPLATE_CONTEXT_PROCESSORS.
+Username (leave blank to use 'google-cloud-my-ubuntu14.04'): Admin         
+Email address: guobiao_cn@hotmail.com
+Password:  # passwd is guobiao_cn@hotmail.com
+Password (again): 
+Superuser created successfully.
+
+
+root@my-ubuntu:/home/google-cloud-my-ubuntu14.04# passwd crazy_audit
+Enter new UNIX password:  # passwd is crazy_audit
+Retype new UNIX password: 
+passwd: password updated successfully
+
+
+google-cloud-my-ubuntu14.04@my-ubuntu:~$ su - crazy_audit
+Password: 
+press ENTER if you don't have token, [input your token]:
+Username:Admin
+Password:
+Traceback (most recent call last):
+  File "/home/google-cloud-my-ubuntu14.04/CrazyEye/crazy_eyes_mgr.py", line 11, in <module>
+    main.call(sys.argv[1:])
+  File "/home/google-cloud-my-ubuntu14.04/CrazyEye/backend/main.py", line 21, in call
+    func(sys_args)
+  File "/home/google-cloud-my-ubuntu14.04/CrazyEye/backend/main.py", line 50, in run
+    if  self.__auth():
+  File "/home/google-cloud-my-ubuntu14.04/CrazyEye/backend/main.py", line 97, in __auth
+    if django.utils.timezone.now() > user.userprofile.valid_begin_time and django.utils.timezone.now() < user.userprofile.valid_end_time:
+  File "/usr/local/lib/python2.7/dist-packages/django/db/models/fields/related.py", line 470, in __get__
+    self.related.get_accessor_name()
+django.db.models.fields.related.RelatedObjectDoesNotExist: User has no userprofile.
+
+
+
+
