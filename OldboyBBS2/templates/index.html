@@ -33,7 +33,7 @@
 </head>
 
 <body>
-
+    {% csrf_token %}
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
@@ -65,6 +65,9 @@
                     </li>
                     <li>
                         <a href="{% url 'chat' %}">聊天室</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'web_qq_dashboard' %}">WEB QQ</a>
                     </li>
                 </ul>
 

@@ -18,10 +18,11 @@ from django.contrib import admin
 
 from bbs import  views
 from  web_chat import urls as chat_urls
-
+from web_qq import urls as web_qq_urls
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^chat/', include(chat_urls)),
+    url(r'^web_qq/', include(web_qq_urls)),
     url(r'^$', views.index ),
     url(r'^life/$', views.life, name='life' ),
     url(r'^tech/$', views.tech, name='tech' ),

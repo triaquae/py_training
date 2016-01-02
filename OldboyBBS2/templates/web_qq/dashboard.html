@@ -1,0 +1,309 @@
+{% extends 'index.html' %}
+{% block head-css %}
+<style type="text/css">
+
+
+.qq-contact-container{
+
+    border:1px dashed darkorange;
+
+
+}
+.qq-contact-list{
+    height: 500px;
+    border:1px dashed black;
+    width: 25%;
+    float: left;
+}
+.qq-dialog {
+    height: 500px;
+    border:1px dashed red;
+    width: 75%;
+    float: left;
+
+}
+
+.clearfix {
+
+    clear: both;
+}
+
+
+.qq-dialog-header{
+    height: 10%;
+    background-color: #a6e1ec;
+
+}
+.qq-dialog-header-content{
+
+    margin-left:30px ;
+    margin-top: 15px;
+}
+
+.qq-dialog-content{
+    height: 70%;
+    background-color: #f8f8f8;
+    overflow: auto;
+
+}
+.qq-dialog-send-box{
+    height: 20%;
+    background-color: #f7e1b5;
+}
+
+textarea {
+    height: 100%;
+    width: 100%;
+    resize: none;
+    border: none;
+}
+</style>
+
+
+{% endblock %}
+
+{% block container %}
+
+    web qq
+
+
+    <div>
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#contact" aria-controls="home" role="tab" data-toggle="tab">联系人</a></li>
+    <li role="presentation"><a href="#group" aria-controls="profile" role="tab" data-toggle="tab">群组</a></li>
+    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">配置</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="contact">
+
+        <div class="qq-contact-container">
+            <div class="qq-contact-list  ">
+                <ul  id="contact-list" class="list-group">
+                {% for contact in request.user.userprofile.friends.select_related %}
+                    <li contact-type="single"  class="list-group-item"  contact-id="{{ contact.id }}">
+                        <span style="background-color: red;" class="badge hide">0</span>
+                        {{ contact.name }}
+                    </li>
+                {% endfor %}
+
+                </ul>
+            </div>
+            <div class="qq-dialog">
+                <div class="qq-dialog-header">
+                    <span class="qq-dialog-header-content" contact-id="-3" contact-type="single">真人</span>
+                </div>
+
+                <div id="qq-dialog-content" class="qq-dialog-content">
+                    content
+                </div>
+                <div class="qq-dialog-send-box">
+                    <textarea  name="content">
+
+
+                    </textarea>
+                </div>
+
+            </div>
+
+            <div class="clearfix"></div>
+        </div>
+
+
+
+
+    </div>
+    <div role="tabpanel" class="tab-pane" id="group">sdf</div>
+    <div role="tabpanel" class="tab-pane" id="settings">...</div>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+{% endblock %}
+
+
+{% block bottom-js %}
+<script type="text/javascript">
+
+global_session_temp = {
+    'single':{},
+    'group':{},
+};
+
+$(document).ready(function(){
+
+
+         //RefreshMsgs = setInterval(function(){
+         GetMsg();
+         //},3000);
+
+
+
+
+         $("#contact-list li").click(function(){
+             $(this).siblings().removeClass("active");
+
+             $(this).addClass("active");
+              $(this).children('span').addClass("hide");
+              $(this).children('span').text('0');
+            SwitchDialog($(this).attr("contact-id"));//一定要在chat dialog标题更改之前进行session切换
+
+            var dialog_header_html = "<span class='qq-dialog-header-content' contact-id='"+ $(this).attr("contact-id") +"' contact-type='"+ $(this).attr("contact-type") +"'>" + $(this).text() + "</span>"
+
+            $(".qq-dialog-header").html(dialog_header_html);
+
+
+
+         });//end click
+
+        //send msg
+        $("body").delegate("textarea", "keydown",function(e){
+
+            if(e.which == 13) {//Enter key down
+                //send msg button clicked
+                var msg_text = $("textarea").val();
+                if ($.trim(msg_text).length > 0){
+
+                    //console.log(msg_text);
+
+                    SendMsg(msg_text);
+                }
+                //no wait the send_msg's call confirm msg
+
+                AddSentMsgIntoBox(msg_text);
+
+                $("textarea").val('');
+
+
+            }
+        });//end body
+
+});//end doc ready
+
+
+function AddSentMsgIntoBox(msg_text){
+    var msg_div = "<div class='pull-right'>" +
+                    "<span>Alex Li</span>" + "<span>13:32</span>" +
+                    "<p>" + msg_text + "</p>" +
+                    "</div>"
+
+
+
+    AppendDialogMsg(msg_div);
+
+}
+
+function AppendDialogMsg(msg_html){
+
+    var msg_html = "<div class='row' style='padding-left:30px;padding-right:30px;'>" + msg_html + "</div>";
+
+    $("#qq-dialog-content").append(msg_html);
+
+    $('#qq-dialog-content').animate({
+        scrollTop: $('#qq-dialog-content')[0].scrollHeight}, 500
+    );//end animate
+}
+
+function GetCSRFToken(){
+
+   var csrf_token= $("input[name='csrfmiddlewaretoken']").val();
+   return csrf_token;
+}
+
+
+function SendMsg(msg){
+
+    var msg_dic = {
+        'from_id':"{{ request.user.userprofile.id }}",
+        'to_id': $(".qq-dialog-header span").attr("contact-id"),
+        'contact_type': $(".qq-dialog-header span").attr("contact-type"),
+        'msg': msg
+    }
+    console.log(msg_dic);
+    console.log(GetCSRFToken());
+    $.post("{% url 'qq_send_msg' %}",{
+        'data': JSON.stringify(msg_dic),
+        'csrfmiddlewaretoken':GetCSRFToken()
+    },function(callback){
+
+        console.log(callback);
+    });//end post
+}
+
+
+
+function GetMsg(){
+
+    $.getJSON("{% url 'qq_get_msg' %}",{'uid':"{{ request.user.userprofile.id }}"},function(callback){
+
+        var current_contact_id = $(".qq-dialog-header span").attr("contact-id");
+        var current_contact_name = $(".qq-dialog-header span").text();
+        $.each(callback,function(index,msg){
+            if (msg.from_id == current_contact_id){ //此消息属于当前打开的聊天窗口
+                var msg_div = "<div>"+ "<span>" + current_contact_name + "</span>" +
+                                "<span>" + msg.date + "</span>" +
+                                "<p>" + msg.msg +"</p>" +
+                                "</div>" ;
+
+                AppendDialogMsg(msg_div);
+
+            }else{
+
+                var msg_count_ele = $("#contact-list li[contact-id='"+ msg.from_id +"'] span");
+                msg_count_ele.removeClass('hide');
+                msg_count_ele.text( parseInt(msg_count_ele.text()) + 1);
+
+                //把新消息暂时存在全局临时dict中
+                if (global_session_temp[msg.contact_type].hasOwnProperty(msg.from_id) == false) {
+                    //没有之前的会话信息
+                    var old_html = '';
+                }else{
+                    var old_html = global_session_temp[msg.contact_type][msg.from_id];
+                }
+                var new_msg_html  = "<div class='row' style='padding-left:30px;padding-right:30px;'><div>"+ "<span>" + current_contact_name + "</span>" +
+                                "<span>" + msg.date + "</span>" +
+                                "<p>" + msg.msg +"</p>" +
+                                "</div></div>" ;
+
+                global_session_temp[msg.contact_type][msg.from_id] +=  new_msg_html;
+                console.log(global_session_temp);
+
+            }//if(msg.from_id == )
+        });//end each
+
+        return GetMsg();
+
+    });//end getJSON
+
+    console.log('=----no block----');
+}
+
+function SwitchDialog(contact_id){
+    var old_dialog_id = $(".qq-dialog-header-content").attr("contact-id");
+    var old_dialog_type = $(".qq-dialog-header-content").attr("contact-type");
+    var old_dialog_content = $("#qq-dialog-content").html();
+    console.log(global_session_temp);
+    global_session_temp[old_dialog_type][old_dialog_id] = old_dialog_content; //dump current into session dic
+
+    if (global_session_temp[old_dialog_type].hasOwnProperty(contact_id) == false) {
+        //没有之前的会话信息
+        var new_html = '';
+    }else{
+        var new_html = global_session_temp[old_dialog_type][contact_id];
+    }
+    //把刚点击的联系人的之前的会话信息再加载出来
+    //console.log('---new html-' + new_html);
+    $("#qq-dialog-content").html(new_html);
+}
+</script>
+{% endblock %}
+
