@@ -1,0 +1,20 @@
+2016-02-17 15:58:01,778 - transaction - WARNING - warn message
+2016-02-17 15:58:01,778 - transaction - ERROR - error message
+2016-02-17 15:58:01,778 - transaction - CRITICAL - critical message
+2016-02-17 17:43:09,001 - transaction - INFO - account:1234   action:withdraw    amount:1000.0   interest:50.0
+2016-02-17 17:43:09,001 - transaction - INFO - account:1234   action:withdraw    amount:1000.0   interest:50.0
+2016-02-17 17:44:38,292 - transaction - INFO - account:1234   action:withdraw    amount:3000.0   interest:150.0
+2016-02-17 17:44:38,292 - transaction - INFO - account:1234   action:withdraw    amount:3000.0   interest:150.0
+2016-02-17 17:45:44,927 - transaction - INFO - account:1234   action:withdraw    amount:1000.0   interest:50.0
+2016-02-17 17:45:44,927 - transaction - INFO - account:1234   action:withdraw    amount:1000.0   interest:50.0
+2016-02-17 17:45:59,967 - transaction - INFO - account:1234   action:withdraw    amount:2000.0   interest:100.0
+2016-02-17 17:45:59,967 - transaction - INFO - account:1234   action:withdraw    amount:2000.0   interest:100.0
+2016-02-17 17:46:26,080 - transaction - INFO - account:1234   action:withdraw    amount:10.0   interest:0.5
+2016-02-17 17:46:26,080 - transaction - INFO - account:1234   action:withdraw    amount:10.0   interest:0.5
+2016-02-17 17:50:40,369 - transaction - INFO - account:1234   action:withdraw    amount:100.0   interest:5.0
+2016-02-17 17:50:57,418 - transaction - INFO - account:1234   action:withdraw    amount:99.0   interest:4.95
+2016-02-17 17:53:17,927 - transaction - INFO - account:1234   action:withdraw    amount:900.0   interest:45.0
+2016-02-17 17:53:22,007 - transaction - INFO - account:1234   action:withdraw    amount:9000.0   interest:450.0
+2016-02-17 17:55:54,325 - transaction - INFO - account:1234   action:repay    amount:300.0   interest:0.0
+2016-02-17 17:55:57,966 - transaction - INFO - account:1234   action:repay    amount:30000.0   interest:0.0
+2016-02-17 17:56:10,630 - transaction - INFO - account:1234   action:withdraw    amount:10000.0   interest:500.0
