@@ -1,0 +1,17 @@
+
+
+bind1:
+  hostname: h1
+  remote_users:
+    - user1:
+      username: root
+      auth_type: ssh-key
+      #password: 123
+    - user2:
+      username: alex
+      auth_type: ssh-passwd
+      password: alex3714
+  groups:
+    - web_devteam
+  user_profiles:
+    - alex
