@@ -1,0 +1,22 @@
+{% extends 'index.html' %}
+{% load custom_tags %}
+{% block left-content-panel %}
+<div>
+    <h3>{{ article_obj.title }}</h3>
+</div>
+<!--article content -->
+<div>
+    <div >
+        <img class="article-head-img" src="/static/{{ article_obj.head_img }}">
+    </div>
+
+    {{ article_obj.content|safe }}
+    <br/>
+    <hr/>
+    <div class="comment-box">
+        {% build_comment_tree  article_obj.comment_set.select_related%}
+    </div>
+</div>
+<!--end article content -->
+
+{% endblock %}

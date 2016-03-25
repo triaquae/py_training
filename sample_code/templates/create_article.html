@@ -1,0 +1,54 @@
+{% extends 'index.html' %}
+{% block custom-js %}
+    <script src="/static/ckeditor/ckeditor.js"></script>
+{% endblock %}
+{% block container %}
+   <div class="row">
+
+      {% if not new_article_obj %}
+          <form enctype="multipart/form-data"  action="{% url 'new_article' %}" method="post">{% csrf_token %}
+
+            <input name="title" type="text" class="form-control" placeholder="文章标题...">
+            {{ form.errors.title }}
+            <br/>
+            <input name="breif" type="text" class="form-control" placeholder="写上一句话概要...">
+            {{ form.errors.brief }}
+            <br/>
+            版块:
+            <select name="category_id" class="form-control">
+                {% for category in categorys %}
+                <option value="{{ category.id }}">{{ category.name }}</option>
+                {% endfor %}
+            </select>
+            <br/>
+            {{ form.errors.content }}
+            上传标题图片:<input  type="file" name="head_img" >
+            <br/>
+            <textarea name="content" id="editor1" rows="10" cols="80">
+                This is my textarea to be replaced with CKEditor.
+            </textarea>
+
+            <br/>
+            <button type="submit" class="btn btn-success pull-right">发贴</button>
+
+          </form>
+
+       <script>
+            // Replace the <textarea id="editor1"> with a CKEditor
+            // instance, using default configuration.
+            CKEDITOR.replace( 'editor1',{
+                 language: 'zh-cn',
+                 uiColor: '#9AB8F3',
+                 height: 500,
+                extraPlugins: 'filebrowser',
+                filebrowserBrowseUrl: '/browser/browse.php',
+                filebrowserUploadUrl: '/uploader/upload.php'
+
+            } );
+       </script>
+
+      {% else %}
+        <h3>文章已发布,<a href="{% url 'article_detail' new_article_obj.id %}">点击查看</a></h3>
+      {% endif %}
+   </div>
+{% endblock %}

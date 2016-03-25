@@ -1,0 +1,45 @@
+
+.left-content-panel {
+    /*background: azure;*/
+    width: 72%;
+}
+
+.right-content-panel {
+    background: #fafafa;
+    margin-left: 20px;
+}
+
+.article-img-box{
+    margin-bottom: 10px;
+    margin-top: 10px;
+    float: left;
+}
+.article-brief-box{
+    float: left;
+    margin-left: 15px;
+    width: 650px;
+}
+
+.clear-both{
+    clear: both;
+}
+
+.article-head-img{
+    width: 100%;
+
+}
+
+.top-branch-comment{
+    border: 1px solid crimson;
+    margin-bottom: 15px;
+}
+
+.comment-node{
+    padding: 10px;
+    padding-bottom: 10px;
+    border: 1px dashed antiquewhite;
+    border-bottom:  0px ;
+    border-left: 2px solid #f51c40;
+
+}
+

@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top" xmlns="http://www.w3.org/1999/html">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">草榴社区</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">最新综合区</a></li>
+            <li><a href="#about">欧美</a></li>
+            <li><a href="#contact">日韩专区</a></li>
+            <li><a href="#contact">大陆专区</a></li>
+            <li><a href="#contact">河南口音</a></li>
+
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+              {% if request.user.is_authenticated %}
+                  <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ request.user.userprofile.name }} <span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                        <li><a href="{% url 'new_article' %}" class="btn-success">发贴</a></li>
+                        <li><a href="#">个人中心</a></li>
+                        <li><a href="#">退出</a></li>
+
+                      </ul>
+                </li>
+              {% else %}
+                <li><a href="#contact">登录\注册</a></li>
+              {% endif %}
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+
+    {% block container %}
+        <div class="row" style="margin-left: -70px;margin-right: -70px" >
+            <div class="col-md-9 left-content-panel">
+            {% block left-content-panel %}
+                {% for article in bbs_list reversed %}
+                    <div class="">
+                        <div class="article-img-box">
+                            <img width="220px" height="124px" src="/static/{{ article.head_img }}">
+                        </div>
+                        <div class="article-brief-box">
+                            <h4>
+                                <a href="{% url 'article_detail' article.id %}"> {{ article.title }} </a>
+                            </h4>
+                            <p>{{ article.breif }}</p>
+                        </div>
+                        <div class="clear-both">
+                            <hr/>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endblock %}
+            </div>
+            <div class="col-md-3 right-content-panel">
+            {% block  right-content-panel%}
+                ddd
+            {% endblock %}
+            </div>
+
+        </div>
+    {% endblock %}
+    </div> <!-- /container -->
+
+
+{% endblock %}
