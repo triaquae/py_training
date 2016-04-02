@@ -113,3 +113,5 @@ STATICFILES_DIRS = (
 )
 
 FileUploadDir = 'statics/imgs/upload'
+
+LOGIN_URL = '/login/'

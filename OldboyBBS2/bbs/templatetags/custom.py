@@ -1,6 +1,7 @@
 #_*_coding:utf-8_*_
 __author__ = 'jieli'
 from django import template
+from django.utils.safestring import mark_safe
 
 register = template.Library()
 
@@ -99,4 +100,4 @@ def build_comment_tree(comment_tree):
         if v:
             html_ele = recursive_build_tree(html_ele,comment_tree[k],30)
 
-    return  html_ele + "</div>"
+    return  mark_safe(html_ele + "</div>")

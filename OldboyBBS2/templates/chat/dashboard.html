@@ -471,7 +471,8 @@ div.bhoechie-tab div.bhoechie-tab-content:not(.active){
         '</div>' +
          '<div align="right" class="msg_box_right" >' +
          '<p ><span class="msg-text-head ">'   + new Date().toLocaleTimeString() + " {{ request.user.userprofile.name }} "  + "</span> </p>" +
-           '<pre class="msg-text-right">' + msg_text +'</pre></div>';
+         '<div class="msg-box-corner"></div>' +
+           '<div class="msg-text-right"><span>' + msg_text +'</span></div> </div>';
 
 
         $("#dialog-content-box").append(msg_item);
@@ -656,10 +657,11 @@ div.bhoechie-tab div.bhoechie-tab-content:not(.active){
             var msg_row = '<div class="timeline-stat">' +
                     '<div class="timeline-icon"><i class="fa fa-user fa-lg"></i></div>' +
                     '</div>' +
-                    '<div class="msg_box_left">' +
+                    '<div class="">' +
                     '<p><span class="msg-text-head">' + item.from.name + '</span>' +
                     '<span class="msg-text-head">' + item.date + '</span></p>' +
-                    '<pre class="msg-text">' + item.msg + '</pre></div>';
+                    '<div class="msg-box-corner-left"></div>' +
+                    '<div class="msg_box_left"><span class="msg-text">' + item.msg + '</span></div> </div>';
             if (msg_belong_to_current_session_flag){
                 html_ele += msg_row;
             }else{ //dialog not opened, save the msg into session dic

@@ -3,6 +3,8 @@ import models
 from django.http import Http404
 from django.core.exceptions import ObjectDoesNotExist
 import  utils
+from django.contrib.auth.decorators import login_required
+
 import json
 from django.contrib.auth import authenticate,login
 

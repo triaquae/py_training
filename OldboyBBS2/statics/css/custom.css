@@ -168,19 +168,52 @@ a:link{
 }
 .msg-text{
 
-    background: aliceblue;
-    padding: 15px;
+
 }
 .msg_box_left{
+    margin-left: 20px;
+    padding: 5px;
     max-width: 80%;
+    background-color: aqua;
+    display: inline-block;
+    border-radius: 10px;
+
 }
 .msg_box_right{
     margin-left:20% ;
+    margin-bottom: 25px;
+    margin-right:50px;
 }
-.msg-text-right{
 
+.msg-box-corner-left{
+    margin-left: 30px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 7px solid aqua;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+
+}
+.msg-box-corner{
+    margin-right: 6px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 7px solid greenyellow;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+
+}
+
+.msg-text-right{
+    padding: 5px;
+    border-radius: 10px;
     background: greenyellow;
-    padding: 15px;
+    display: inline-block;
+
 }
 .timeline-label:after {
     border-top: 9px solid transparent;

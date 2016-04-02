@@ -3,9 +3,13 @@ from django.shortcuts import render,HttpResponse
 # Create your views here.
 import  Queue
 import  utils
+from django.contrib.auth.decorators import login_required
+
 
 msg_queue = {}
 
+
+@login_required
 def dashboard(request):
 
     return  render(request,'chat/dashboard.html')
