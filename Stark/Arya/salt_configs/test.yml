@@ -1,0 +1,44 @@
+apache:
+  pkg.installed:
+    - pkgs:
+      - vim
+      - nginx: 1.2.4
+      - python-django
+  #service.running:
+  #  - reload: True
+  #  - watch:
+  #    - file: /etc/httpd/conf/httpd.conf
+  user.present:
+    - uid: 87
+    - gid: 87
+    - home: /home/apache
+    - fullname: alex test
+    - password: alex3714
+    - shell: /bin/nologin
+    - require:
+      - group: apache
+      - file: /tmp/test.file
+      - user: alex
+  group.present:
+    - gid: 87
+    - require:
+      - pkg: apache
+
+#/etc/httpd/conf/httpd.conf:
+/tmp/httpd.conf:
+  file.managed:
+    - source: http://apache/httpd.conf
+    - user: root
+    - group: root
+    - mode: 644
+
+/var/log/httpd:
+  file.directory:
+    - user: root
+    - group: root
+    - mode: 755
+    - recurse:
+    - sources:
+      - salt://motd/devops-messages.tmpl
+      - http://apache/test_config.yml
+      - salt://motd/general-messages.tmpl
