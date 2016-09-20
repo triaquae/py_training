@@ -1,0 +1,54 @@
+{% extends 'app/base.html' %}
+
+
+{% block extra-header-elements %}
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <link href="/static/app/login/css/style.css" rel='stylesheet' type='text/css' />
+
+{% endblock %}
+{%  block page-container %}
+
+
+<script>$(document).ready(function(c) {
+	$('.close').on('click', function(c){
+		$('.login-form').fadeOut('slow', function(c){
+	  		$('.login-form').remove();
+		});
+	});
+});
+</script>
+ <!--SIGN UP-->
+ <h2>微博 | 随时发现新鲜事</h2>
+<div class="login-form">
+	<div class="close"> </div>
+		<div class="head-info">
+			<label class="lbl-1"> </label>
+			<label class="lbl-2"> </label>
+			<label class="lbl-3"> </label>
+		</div>
+			<div class="clear"> </div>
+	<div class="avtar">
+		<img src="/static/app/login/images/avtar.png" />
+	</div>
+			<form method="post">{% csrf_token %}
+					<input type="text" name="username" class="text" value="Username" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Username';}" >
+                    <div class="key">
+                        <input type="password" name="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
+                    </div>
+                    <div>
+                        <span style="color: red">{{ error }}</span>
+                    </div>
+                    <div class="signin">
+                        <input type="submit" value="Login" >
+                    </div>
+			</form>
+
+</div>
+ <div class="copy-rights">
+					<p> 微博实战项目  Copyright &copy; 2016.<a href="http://oldboyedu.com/" target="_blank" >老男孩教育</a>All rights reserved.</p>
+ </div>
+
+
+
+
+{% endblock %}

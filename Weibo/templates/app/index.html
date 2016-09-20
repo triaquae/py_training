@@ -1,0 +1,616 @@
+{% extends 'app/base.html' %}
+
+{%  block extra-header-elements %}
+    <link rel="stylesheet" href="/static/emoji/css/reset.css">
+    <link href="/static/plugins/fileinput/css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
+
+{% endblock %}
+
+{% block page-container %}
+
+<div class="wb_frame">
+
+    <div class="row" style="margin-left: 10px;">
+        <div class="col-md-2 wb_frame_sidebar">
+            <div class="sidebar-nav">
+                <a>首页</a>
+            </div>
+            <div class="sidebar-nav">
+                <a>我的收藏</a>
+            </div>
+            <div class="sidebar-nav">
+                <a>我的赞</a>
+            </div>
+            <hr />
+            <div class="sidebar-nav">
+                <a>热门微博</a>
+            </div>
+            <hr/>
+            <div class="sidebar-nav">
+                <a>好友圈</a>
+            </div>
+            <div class="sidebar-nav">
+                <a>特别关注</a>
+            </div>
+            <div class="sidebar-nav">
+                <a>名人明星</a>
+            </div>
+             <div class="sidebar-nav">
+                <a>同事</a>
+            </div>
+             <div class="sidebar-nav">
+                <a>同学</a>
+             <div class="sidebar-nav">
+                <a>科技</a>
+            </div>
+            </div>
+        </div>
+        <div class="col-md-7 wb_frame_main">
+            <div class="new_wb_create_box">
+                <div>
+                    有什么新鲜事想告诉大家?
+                    <span class="pull-right" style="margin-right: 10px">还可以输入<b id="wb_create_left_letter_num">140</b>字</span>
+                </div>
+                <div><textarea id="wb_create" ></textarea></div>
+                <div class="new_wb_func_box">
+                    <div    class="func_box_float_left_first">
+                        <a id="new_wb_func_emoj" class="emotion" >
+                            <i class="fa fa-smile-o" aria-hidden="true"></i> 表情
+                        </a>
+
+                    </div>
+                    <div id="new_wb_func_pic" class="func_box_float_left" >
+                        <a href="#" data-toggle="popover"><i class="fa fa-picture-o" aria-hidden="true"></i>&nbsp;图片</a>
+                    </div>
+
+
+
+                    <div id="new_wb_func_video " class="func_box_float_left">
+                        <i class="fa fa-video-camera" aria-hidden="true"></i>&nbsp;视频</div>
+                    <div id="new_wb_func_topic " class="func_box_float_left">
+                        <i class="fa fa-coffee" aria-hidden="true"></i>&nbsp;话题</div>
+                    <div id="new_wb_func_article " class="func_box_float_left">
+                        <i class="fa fa-bolt" aria-hidden="true"></i>&nbsp;头条文章</div>
+                    <div id="new_wb_func_publish" class="func_box_float_right_first">
+                        <button type="button" onclick="PublishWB()" class="btn btn-sm btn-warning disabled">发布</button>
+                    </div>
+                    <div id="new_wb_func_perm" class="func_box_float_right">
+
+                        <div class="dropdown">
+                          <span id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              公开
+                            <span class="caret"></span>
+                          </span>
+                          <ul class="dropdown-menu" aria-labelledby="dLabel">
+                            <li><a href="#">公开</a></li>
+                            <li><a href="#">好友圈</a></li>
+                            <li><a href="#">仅自己可见</a></li>
+                          </ul>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="wb_category_nav">
+                <ul >
+                    <li style="margin-left: 30px">全部</li>
+                    <li>原创</li>
+                    <li>图片</li>
+                    <li>视频</li>
+                    <li>音乐</li>
+                    <li>文章</li>
+                    <li class="pull-right">
+                        <form class="form-search">
+                          <input type="text" class="input-medium search-query">
+                          <i class="fa fa-search" aria-hidden="true"></i>
+                        </form>
+
+                    </li>
+                </ul>
+                <div onclick="LoadNewWeibos()" class="hide" style="cursor:pointer; height: 25px;background-color: #eb7350; text-align: center; padding: 3px" >
+                    你有<span id="new_wb_notify_bar">0</span>条新微博,点击查看
+                </div>
+            </div>
+
+            <div class="wb_list">
+                <div class="wb_item">
+
+                    <div class="wb_face wb_item_float">
+                        <img src="/static/images/face.jpg">
+                    </div>
+                    <div class="wb_item_detail wb_item_float ">
+                        <div class="wb_item_info">
+                            Alexander
+                        </div>
+                        <div class="wb_item_from">
+                            21分钟前  来自 Iphone 6s Plus
+                        </div>
+                        <div class="wb_item_content">
+                            感觉每天的时间都不够用，谁说孕妇最无聊的？每天的时间都被学习法语、读书、练琴占据了，剩下的时间就是吃和睡了，真的啥也干不了，一天不知不觉就过去了，还蛮有成就感的！我一定是一个积极进取充满正能量的好妈妈[不好意思][不好意思]
+                        </div>
+
+                    </div>
+                    <div class="clearfix"></div>
+                    <hr/>
+                    <div class="wb_item_bottom">
+                        <ul>
+                            <li style="margin-left: 5px">
+                                <i class="fa fa-star-o" aria-hidden="true"></i>&nbsp;收藏
+                            </li>
+                            <li><i class="fa fa-external-link" aria-hidden="true"></i>&nbsp;转发</li>
+                            <li><i class="fa fa-commenting-o" aria-hidden="true"></i>&nbsp;评论</li>
+                            <li><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>&nbsp;点赞</li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="margin-top: 10px" class="wb_item">
+
+                    <div class="wb_face wb_item_float">
+                        <img src="/static/images/face.jpg">
+                    </div>
+                    <div class="wb_item_detail wb_item_float ">
+                        <div class="wb_item_info">
+                            Alexander
+                        </div>
+                        <div class="wb_item_from">
+                            21分钟前  来自 Iphone 6s Plus
+                        </div>
+                        <div class="wb_item_content">
+                            感觉每天的时间都不够用，谁说孕妇最无聊的？每天的时间都被学习法语、读书、练琴占据了，剩下的时间就是吃和睡了，真的啥也干不了，一天不知不觉就过去了，还蛮有成就感的！我一定是一个积极进取充满正能量的好妈妈[不好意思][不好意思]
+                        </div>
+
+                    </div>
+                    <div class="clearfix"></div>
+                    <hr/>
+                    <div class="wb_item_bottom">
+                        <ul>
+                            <li style="margin-left: 5px">
+                                <i class="fa fa-star-o" aria-hidden="true"></i>&nbsp;收藏
+                            </li>
+                            <li><i class="fa fa-external-link" aria-hidden="true"></i>&nbsp;转发</li>
+                            <li><i class="fa fa-commenting-o" aria-hidden="true"></i>&nbsp;评论</li>
+                            <li><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>&nbsp;点赞</li>
+                        </ul>
+                    </div>
+                </div>
+                <div  style="margin-top: 10px" class="wb_item">
+
+                    <div class="wb_face wb_item_float">
+                        <img src="/static/images/face.jpg">
+                    </div>
+                    <div class="wb_item_detail wb_item_float ">
+                        <div class="wb_item_info">
+                            Alexander
+                        </div>
+                        <div class="wb_item_from">
+                            21分钟前  来自 Iphone 6s Plus
+                        </div>
+                        <div class="wb_item_content">
+                            感觉每天的时间都不够用，谁说孕妇最无聊的？每天的时间都被学习法语、读书、练琴占据了，剩下的时间就是吃和睡了，真的啥也干不了，一天不知不觉就过去了，还蛮有成就感的！我一定是一个积极进取充满正能量的好妈妈[不好意思][不好意思]
+                        </div>
+
+                    </div>
+                    <div class="clearfix"></div>
+                    <hr/>
+                    <div class="wb_item_bottom">
+                        <ul>
+                            <li style="margin-left: 5px">
+                                <i class="fa fa-star-o" aria-hidden="true"></i>&nbsp;收藏
+                            </li>
+                            <li><i class="fa fa-external-link" aria-hidden="true"></i>&nbsp;转发</li>
+                            <li><i class="fa fa-commenting-o" aria-hidden="true"></i>&nbsp;评论</li>
+                            <li><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>&nbsp;点赞</li>
+                        </ul>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+        <div class="col-md-3 wb_frame_sidebar_right">
+            <div class="profile-info">
+                <img class="profile_img" src="/static/images/profile_pic.jpg">
+                <div class="profile_name_box">
+                    <a  style="font-size: 16px;font-weight: bold;margin-left: 40px">Alex之大道至简</a>
+                    <ul class="profile_detail_numbers">
+                        <li style="margin-left: 0px">1002 <br><span>关注</span></li>
+                        <li>1002 <br><span>粉丝</span></li>
+                        <li>1002 <br><span>微博</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="friends_zone">
+                <h5 style="padding: 10px 10px 0px 10px;">好友圈<i class="fa fa-cog pull-right" aria-hidden="true"></i></h5>
+                <hr/>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+<div  style="margin-top: 10px" class="wb_item hide">
+
+    <div class="wb_face wb_item_float">
+        <img src="/static/images/profile_pic.jpg">
+    </div>
+    <div class="wb_item_detail wb_item_float ">
+        <div class="wb_item_info">
+            Alexander
+        </div>
+        <div class="wb_item_from">
+            21分钟前  来自 Iphone 6s Plus
+        </div>
+        <div class="wb_item_content">
+            感觉每天的时间都不够用，谁说孕妇最无聊的？每天的时间都被学习法语、读书、练琴占据了，剩下的时间就是吃和睡了，真的啥也干不了，一天不知不觉就过去了，还蛮有成就感的！我一定是一个积极进取充满正能量的好妈妈[不好意思][不好意思]
+        </div>
+
+    </div>
+    <div class="clearfix"></div>
+    <hr/>
+    <div class="wb_item_bottom">
+        <ul>
+            <li style="margin-left: 5px">
+                <i class="fa fa-star-o" aria-hidden="true"></i>&nbsp;收藏
+            </li>
+            <li><i class="fa fa-external-link" aria-hidden="true"></i>&nbsp;转发</li>
+            <li><i class="fa fa-commenting-o" aria-hidden="true"></i>&nbsp;评论</li>
+            <li><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>&nbsp;点赞</li>
+        </ul>
+    </div>
+</div>
+
+{#<div id="img-upload">#}
+{#<input id="input-id" name="kartik-input-700[]" type="file" multiple class="file-loading">#}
+{#</div>#}
+
+
+<div id="pic_upload">
+    <form id="pic_upload_form" action="server" enctype="multipart/form-data">
+        <div>
+{#            <input type="file" id="myfile" multiple="multiple" name="myfile"  size="100" onchange="FileSelected(this)" />#}
+
+
+        </div>
+    </form>
+</div>
+
+
+{% endblock %}
+
+{% block bottom-js %}
+<script type="text/javascript" src="/static/emoji/js/jquery.qqFace.js"></script>
+<script src="/static/plugins/fileinput/js/fileinput.js" type="text/javascript"></script>
+
+<script>
+    $(document).ready(function(){
+        LoadNewWeiboCount();
+        new_wb_pic_names = [];//
+
+{#    // with fileinput plugin options#}
+{#    $("#input-id").fileinput({#}
+{#        showUpload:false,#}
+{#        previewFileType:'any',#}
+{#        uploadUrl: "http://localhost/file-upload-single/1", // server upload action#}
+{#        uploadAsync: true,#}
+{#        maxFileCount: 5#}
+{##}
+{#    });#}
+{#    //fileinput#}
+
+        //imgage popover
+        $("#new_wb_func_pic a").popover({
+            title: 'Default title value',
+            placement: 'bottom',
+            html: true,
+            content: function() {
+              //var upload_ele =  $("#img-upload").html();
+              //var upload_ele =  $("#pic_upload").html();
+              var input_ele =  '<input type="file" id="myfile" multiple="multiple" name="myfile"  size="100" onchange="FileSelected(this)" />' +
+                              '<output id="file_list"></output>';
+              //document.getElementById('file_list').insertBefore(span, null);
+              return input_ele;
+              //return "<h1>ddd</h1>";
+            },
+            viewport: { selector: 'body', padding: 0 }
+        });
+
+
+        //end imgage popover
+        //表情qq
+
+        $('.emotion').qqFace({
+            id : 'facebox',
+            assign:'wb_create',
+            path:'/static/emoji/arclist/'	//表情存放的路径
+        });
+        $(".new_wb_func_emoj").click(function(){
+            var str = $("#wb_create").val();
+            //$("#show").html(replace_em(str)); 替换表情符号到img代码
+        });
+        //end 表情qq
+
+
+
+        $('body').delegate('textarea','keypress keyup blur', function() {
+
+            var val = $(this).val();
+            // Trim the field if it has content over the maxlength.
+            var left_letter_num = 140 - val.length;
+            $("#wb_create_left_letter_num").text(left_letter_num);
+            if (val.length > 140) {
+                //$(this).val(val.slice(0, 140));
+                $("#wb_create_left_letter_num").html("<span style='color:red'>" + left_letter_num + "</span>");
+                $("#new_wb_func_publish button").addClass("disabled");
+            }else if($.trim(val).length >0){
+                $("#new_wb_func_publish button").removeClass("disabled");
+            }else{
+                $("#new_wb_func_publish button").addClass("disabled");
+            }
+
+        });
+
+    });//end doc ready
+
+    //文件 选择后触发
+    function FileSelected(ele){
+        //console.log($(ele));
+        //console.log($(ele)[0].files);
+        //console.log("files selected.");
+        //var reader = new FileReader();
+        //document.getElementById('file_list').insertBefore(span, null);
+        //document.getElementById('myfile').addEventListener('change', handleFileSelect, false);
+        handleFileSelected2(ele);
+    }
+
+
+    //拉取新wb
+    function  LoadNewWeibos(){
+        $.getJSON("{% url 'load_new_wbs'  request.user.userprofile.id %}",function(callback){
+
+            console.log('new wbs');
+            console.log(callback);
+            var wb_item_template= $(".wb_item").filter(".hide"); //.clone().removeClass("hide");
+
+            for ( i in callback.new_wb_list){
+                var wb_item =  callback.new_wb_list[i];
+                var formatted_wb_test = replace_em(wb_item['wb_text'] ) ; //替换qq表情
+                wb_item_template.find(".wb_item_content").html(  "<div>" + formatted_wb_test + "</div>" );
+                //handle pics
+                var img_box = ['<div style="display:inline-block">',]
+                for (i in wb_item.pictures){
+                    img_box.push('<img style="height:150px; max-width:540px; border: 1px solid #000; margin: 5px" src="/static/'+ wb_item.user_id +'/' + wb_item.wb_id + '/' + wb_item.pictures[i] +'">');
+                }
+                img_box.push("</div>");
+                var img_box_div = img_box.join(' ');
+                wb_item_template.find(".wb_item_content").append(img_box_div);
+
+                $(".wb_list").prepend(wb_item_template.clone().removeClass("hide"));
+
+            }
+
+
+        });//end getjson
+    }
+    function  handleFileSelected2(ele){
+        var files = $(ele)[0].files;
+        // Loop through the FileList and render image files as thumbnails.
+        for (var i = 0, f; f = files[i]; i++) {
+
+          // Only process image files.
+          if (!f.type.match('image.*')) {
+            continue;
+          }
+
+          var reader = new FileReader();
+
+          // Closure to capture the file information.
+          reader.onload = (function(theFile) {
+            return function(e) {
+              // Render thumbnail.
+              //var span = document.createElement('span');
+              //span.innerHTML =
+              var img_ele =
+              ['<div  style="display:inline-block; position:relative;">',
+                '<img id="img_test" style="height: 75px; border: 1px solid #000; margin: 5px; opacity: 0.3;" src="',
+                e.target.result,
+                '" title="', theFile.name,
+                '"/>',
+                '<span  style="position:absolute;left:40%;top:30px" >0%</span>',
+                '</div>'
+              ].join('');
+
+              //document.getElementById('file_list').insertBefore(span, null);
+              $("#file_list").append(img_ele)  ;
+
+              imgAjaxUpload(theFile);
+            };
+          })(f);
+
+          // Read in the image file as a data URL.
+          reader.readAsDataURL(f);
+
+          //upload img
+
+          console.log(f) ;
+          //
+        } //end for
+
+
+    }
+    //image ajax upload
+    function imgAjaxUpload(file_obj){
+        var formData = new FormData();
+        formData.append('file',file_obj);
+        $.ajax({
+               url : "{% url 'file_upload_test' %}",
+               type : 'POST',
+               data : formData,
+               processData: false,  // tell jQuery not to process the data
+               contentType: false,  // tell jQuery not to set contentType
+               success : function(data) {
+                   console.log(data);
+                   //alert(data);
+
+               }
+        });
+
+
+        GetUploadProgress(file_obj);
+
+
+    }
+    //end image ajax upload
+
+    //file upload progress
+    function GetUploadProgress(file_obj){
+        $(".progress").removeClass("hide"); //不让进度条隐藏了
+        var img_ele = $("img[title='" + file_obj.name +"']"); //在页面上找到这个图片的预览对象
+        //var img_ele = $("#img_test"); //在页面上找到这个图片的预览对象
+        //console.log("img[title='" + file_obj.name +"']");
+        //console.log(img_ele.parent()[0]);
+        var RefreshUploadProgress = setInterval(function(){
+            $.getJSON("{% url 'file_upload_progress' %}",{filename:file_obj.name}, function(callback){
+                //console.log("upload progress: " + callback.received_size);
+
+                //update progress bar
+                var progress = ((callback.received_size/file_obj.size)*100).toFixed(1)
+                $(".progress-bar").text( progress +"%");
+                $(".progress-bar").css('width',progress +"%");
+                console.log("upload progress:: " + progress);
+                //end update progress bar
+                //把上传进度印在照片上
+                //console.log(img_ele);
+                //console.log(img_ele.next()[0]);
+                img_ele.next().text(progress +"%");
+                //end 把上传进度印在照片上
+
+
+                if (callback.received_size >= file_obj.size){
+                    clearInterval(RefreshUploadProgress);
+                    //remove img opacity
+                    img_ele.css("opacity",1);
+                    new_wb_pic_names.push(file_obj.name); //把上传成功的文件名放到全局list中
+
+                    //ClearUploadProgressKeyOnServer
+                    $.post("{% url 'file_upload_progress' %}",{'cache_key':file_obj.name},function(callback){
+                        console.log(callback)
+                    });
+                    //end ClearUploadProgressKeyOnServer
+                }
+            } );//end get
+
+        },500);
+
+    }
+    //end file upload progress
+
+
+    function handleFileSelect(evt) { //deprecated
+        var files = evt.target.files;
+
+        // Loop through the FileList and render image files as thumbnails.
+        for (var i = 0, f; f = files[i]; i++) {
+
+          // Only process image files.
+          if (!f.type.match('image.*')) {
+            continue;
+          }
+
+          var reader = new FileReader();
+
+          // Closure to capture the file information.
+          reader.onload = (function(theFile) {
+            return function(e) {
+              // Render thumbnail.
+              //var span = document.createElement('span');
+              //span.innerHTML =
+              var img_ele =
+              [
+                '<img style="height: 75px; border: 1px solid #000; margin: 5px" src="',
+                e.target.result,
+                '" title="', escape(theFile.name),
+                '"/>'
+              ].join('');
+
+              //document.getElementById('file_list').insertBefore(span, null);
+              $("#file_list").append(img_ele)  ;
+            };
+          })(f);
+
+          // Read in the image file as a data URL.
+          reader.readAsDataURL(f);
+        }
+      }
+
+      //document.getElementById('myfile').addEventListener('change', handleFileSelect, false);
+
+    //end file upload
+
+    function LoadNewWeiboCount(){
+
+        $.getJSON("{% url 'get_new_wbs' request.user.userprofile.id %}", function(callback){
+            console.log(callback);
+            if (callback.new_wb_count >0){
+                $("#new_wb_notify_bar").text(callback.new_wb_count);
+                $("#new_wb_notify_bar").parent().removeClass("hide");
+            }
+        });//end getJSON
+    }
+
+    function replace_em(str){  //qq表情替换
+        str = str.replace(/\</g,'&lt;');
+        str = str.replace(/\>/g,'&gt;');
+        str = str.replace(/\n/g,'<br/>');
+        str = str.replace(/\[em_([0-9]*)\]/g,'<img src="/static/emoji/arclist/$1.gif" border="0" />');
+        return str;
+    }
+
+    function  PublishWB(){
+        var new_wb_text = $.trim($("#wb_create").val());
+        if (new_wb_text.length ==0){
+            return null;//没内容,不发
+        }
+        var wb_data = {
+            'wb_text':new_wb_text,
+            'pictures':new_wb_pic_names,
+            'viedo_link':null,
+            'user_id': "{{ request.user.userprofile.id }}"
+
+        }; //把要发送的数据整理好后放在这个数组里,最后发送
+        console.log(wb_data);
+
+        $.post("{% url 'wb_create' %}",{data: JSON.stringify(wb_data)},function(callback){
+            //console.log(callback);
+            var callback = JSON.parse(callback);
+            if (callback.status == 'success'){
+                console.log(callback);
+
+                var wb_item_template= $(".wb_item").filter(".hide"); //.clone().removeClass("hide");
+                var formatted_wb_test = replace_em(callback['data']['wb_text'] ) ; //替换qq表情
+                wb_item_template.find(".wb_item_content").html(  "<div>" + formatted_wb_test + "</div>" );
+                //handle pics
+                var img_box = ['<div style="display:inline-block">',]
+                for (i in callback.data.pictures){
+                    img_box.push('<img style="height:150px; max-width:540px; border: 1px solid #000; margin: 5px" src="/static/{{ request.user.userprofile.id }}/temp/'+ callback.data.pictures[i] +'">');
+                }
+                img_box.push("</div>");
+                var img_box_div = img_box.join(' ');
+                wb_item_template.find(".wb_item_content").append(img_box_div);
+                console.log(img_box_div);
+                new_wb_pic_names.splice(0,new_wb_pic_names.length);//清空图片名数组
+                //end handel pic display
+                $('#wb_create').val('');//清空textarea
+                $(".wb_list").prepend(wb_item_template.clone().removeClass("hide"));
+                $("#new_wb_func_publish button").addClass("disabled");
+
+            }
+        });//end post
+    }
+</script>
+
+{% endblock %}

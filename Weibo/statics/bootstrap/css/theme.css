@@ -1,0 +1,246 @@
+body {
+  padding-top: 70px;
+  padding-bottom: 30px;
+  background: url("/static/images/body_bg.jpg") no-repeat top center;
+  background-color:   #b4daef;
+}
+
+.theme-dropdown .dropdown-menu {
+  position: static;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.theme-showcase > p > .btn {
+  margin: 5px 0;
+}
+
+.theme-showcase .navbar .container {
+  width: auto;
+}
+
+
+/*custom css */
+
+.wb_frame {
+  min-height: 680px;
+  border: 1px dashed aqua;
+}
+
+.wb_frame_sidebar {
+  height:inherit;
+  width: 150px;
+  border: 1px solid red;
+  position: fixed;
+
+
+}
+
+.wb_frame_main{
+  height: 100%;
+  width: 63%;
+  margin-left: 151px;
+  border:1px solid blueviolet;
+}
+
+.wb_frame_sidebar_right{
+  width:21%;
+
+}
+
+.sidebar-nav{
+  margin-top: 10px;
+}
+
+.sidebar-nav a:hover{
+  color: white;
+  text-decoration: none;
+}
+
+.new_wb_create_box {
+  padding-top: 30px;
+  padding-left: 5px;
+  padding-bottom: 39px;
+  border-radius: 3px;
+  background-color: #fff;
+}
+
+.new_wb_create_box textarea{
+  height: 82px;
+  width: 675px;
+  border: 1px dashed aqua;
+  resize: none;
+  border-color: #cccccc;
+  box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.15) inset;
+}
+
+.func_box_float_left {
+  float: left;
+  margin-left: 30px;
+  margin-top: 5px;
+}
+
+.func_box_float_left_first{
+  float: left;
+  margin-top: 5px;
+}
+.func_box_float_right{
+  float: right;
+  margin-right: 30px;
+  margin-top: 5px;
+}
+.func_box_float_right_first{
+  float: right;
+  margin-right:10px
+}
+
+
+#new_wb_func_emoj {
+  color: orangered;
+}
+
+.wb_category_nav{
+  margin-top: 10px;
+  padding-left: 5px;
+  border-radius: 3px;
+  background-color: #fff;
+}
+.wb_category_nav li{
+  display: inline-block;
+  margin: 10px;
+}
+
+.wb_item{
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 3px;
+
+
+}
+
+.wb_face{
+    width: 15%;
+}
+.wb_face img{
+  margin-left: 15px;
+  margin-top: 15px;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+
+}
+
+.wb_item_float{
+  float: left;
+}
+.wb_item_detail{
+  margin-top: 15px;
+  float: left;
+  margin-left: -20px;
+  width: 82%;
+
+
+}
+.wb_item_info{
+  font-size: 15px;
+  font-weight: bold;
+}
+.wb_item_from{
+  margin-top: 5px;
+
+  font-size: 12px;
+  color: darkgrey;
+}
+
+.wb_item_content{
+    margin-top: 5px;
+    letter-spacing:0.7px
+}
+
+.wb_item_bottom ul{
+      margin-bottom: 0px;
+    margin-top: -5px;
+}
+.wb_item_bottom li{
+  display: inline-block;
+  margin-left: 130px;
+
+}
+
+.profile-info{
+  background-image: url("/static/images/profile_cover_s.jpg");
+  background-color: white;
+  background-repeat:no-repeat;
+  height: 176px;
+  border-radius: 3px;
+  margin-right: -5px;
+  margin-left: -15px;
+}
+.profile_img{
+  border-radius: 50%;
+  height: 60px;
+  width: 60px;
+  margin-top: 40px;
+  margin-left: 80px;
+}
+
+.profile_detail_numbers {
+  margin-left: 30px;
+}
+.profile_detail_numbers li{
+  display: inline-block;
+  font-size: 15px;
+  font-weight: bold;
+  margin-left: 15px;
+}
+.profile_detail_numbers span{
+  font-size: 11px;
+  color: gray;
+  margin-left: 5px;
+}
+
+
+.friends_zone{
+  background-color: white;
+  height: 350px;
+  margin-top: 10px;
+  border-radius: 3px;
+  margin-right: -5px;
+  margin-left: -15px;
+}
+
+#emoji_list img{
+  height: 1em;
+  width: 1em;
+}
+
+
+
+
+/*for 表情插件*/
+
+.comment{width:680px; margin:20px auto; position:relative; background:#fff; padding:20px 50px 50px; border:1px solid #DDD; border-radius:5px;}
+.comment h3{height:28px; line-height:28px}
+.com_form{width:100%; position:relative}
+.input{width:99%; height:60px; border:1px solid #ccc}
+.com_form p{height:28px; line-height:28px; position:relative; margin-top:10px;}
+span.emotion{width:42px; height:20px; background:url(http://www.16code.com/cache/demos/user-say/img/icon.gif) no-repeat 2px 2px; padding-left:20px; cursor:pointer}
+span.emotion:hover{background-position:2px -28px}
+.qqFace{margin-top:4px;background:#fff;padding:2px;border:1px #dfe6f6 solid;}
+.qqFace table td{padding:0px;}
+.qqFace table td img{cursor:pointer;border:1px #fff solid;}
+.qqFace table td img:hover{border:1px #0066cc solid;}
+
+/* end 表情插件 */
+
+.popover{
+    max-width: 100%; /* Max Width of the popover (depending on the container!) */
+}
+
+
+.dropzone {
+  border: 2px dashed #0087F7;
+  border-radius: 5px;
+  background: white;
+  height: 300px;
+}
